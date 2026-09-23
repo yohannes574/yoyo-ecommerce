@@ -36,7 +36,7 @@ export default function ProductDetails() {
     setLoading(true)
     setNotFound(false)
     api
-      .get(`/api/products/${slug}`)
+      .get(`/products/${slug}`)
       .then((d) => {
         if (cancelled) return
         setProduct(d.product)

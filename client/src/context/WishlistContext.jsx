@@ -31,7 +31,7 @@ export function WishlistProvider({ children }) {
 
   const toggle = async (product) => {
     if (String(product.id) && ids.has(String(product.id))) {
-      const d = await api.delete(`/api/wishlist/${product.id}`)
+      const d = await api.delete(`/wishlist/${product.id}`)
       setProducts(d.wishlist.products)
       return false
     }
@@ -45,3 +45,4 @@ export function WishlistProvider({ children }) {
 }
 
 export const useWishlist = () => useContext(WishlistContext)
+

@@ -13,7 +13,7 @@ export default function ProductRow({ title, query, viewAllTo, viewAllLabel = 'Vi
     let cancelled = false
     setLoading(true)
     api
-      .get(`/api/products?${query}&limit=8`)
+      .get(`/products?${query}&limit=8`)
       .then((d) => {
         if (!cancelled) setProducts(d.products)
       })

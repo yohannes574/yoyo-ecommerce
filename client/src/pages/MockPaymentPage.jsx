@@ -25,7 +25,7 @@ export default function MockPaymentPage() {
     try {
       // In mock mode the server flips a MOCK- reference straight to paid.
       const mockRef = reference.replace('YOYO-', 'MOCK-')
-      await api.get(`/api/payments/verify/${encodeURIComponent(mockRef)}`)
+      await api.get(`/payments/verify/${encodeURIComponent(mockRef)}`)
       setStatus('done')
     } catch (e) {
       setError(e.message || 'Payment failed')
@@ -88,3 +88,4 @@ export default function MockPaymentPage() {
     </div>
   )
 }
+

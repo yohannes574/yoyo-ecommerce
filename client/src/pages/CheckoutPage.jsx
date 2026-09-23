@@ -195,7 +195,7 @@ export default function CheckoutPage() {
     }
     api
       .get(
-        `/api/delivery/quote?city=${encodeURIComponent(addr.city || '')}&subCity=${encodeURIComponent(addr.subCity || '')}&subtotal=${subtotal}`
+        `/delivery/quote?city=${encodeURIComponent(addr.city || '')}&subCity=${encodeURIComponent(addr.subCity || '')}&subtotal=${subtotal}`
       )
       .then((res) => {
         if (!cancelled)
@@ -858,4 +858,5 @@ export default function CheckoutPage() {
     </div>
   )
 }
+
 

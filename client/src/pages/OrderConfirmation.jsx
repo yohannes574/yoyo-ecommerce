@@ -23,8 +23,8 @@ export default function OrderConfirmation() {
     if (!returnedReference || order.payment?.status === 'paid') return
 
     api
-      .get(`/api/payments/verify/${encodeURIComponent(returnedReference)}`)
-      .then(() => api.get(`/api/checkouts/${id}`))
+      .get(`/payments/verify/${encodeURIComponent(returnedReference)}`)
+      .then(() => api.get(`/checkouts/${id}`))
       .then((res) => setOrder(res.order))
       .catch((err) => setError(err.message || 'Payment verification is still pending'))
   }, [id, order, searchParams])
@@ -32,7 +32,7 @@ export default function OrderConfirmation() {
   useEffect(() => {
     if (!order && id) {
       api
-        .get(`/api/checkouts/${id}`)
+        .get(`/checkouts/${id}`)
         .then((res) => setOrder(res.order))
         .catch((err) => setError(err.message || 'Order could not be loaded'))
         .finally(() => setLoading(false))
@@ -168,3 +168,4 @@ export default function OrderConfirmation() {
     </div>
   )
 }
+

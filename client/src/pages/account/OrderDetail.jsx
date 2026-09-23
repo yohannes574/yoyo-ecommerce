@@ -34,7 +34,7 @@ export default function OrderDetail() {
   const fetchOrder = async () => {
     setLoading(true)
     try {
-      const res = await api.get(`/api/checkouts/${id}`)
+      const res = await api.get(`/checkouts/${id}`)
       setOrder(res.order)
       orderRef.current = res.order?.orderNumber || null
     } catch (err) {
@@ -65,7 +65,7 @@ export default function OrderDetail() {
     setCancelError('')
     setCancelling(true)
     try {
-      const res = await api.post(`/api/checkouts/${id}/cancel`, { cancelReason })
+      const res = await api.post(`/checkouts/${id}/cancel`, { cancelReason })
       setOrder(res.order)
       setShowCancelModal(false)
     } catch (err) {
@@ -410,4 +410,5 @@ export default function OrderDetail() {
     </div>
   )
 }
+
 

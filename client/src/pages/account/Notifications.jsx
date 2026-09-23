@@ -26,7 +26,7 @@ export default function Notifications() {
 
   const open = async (n) => {
     if (!n.read) {
-      try { await api.post(`/api/notifications/${n.id}/read`) } catch { /* ignore */ }
+      try { await api.post(`/notifications/${n.id}/read`) } catch { /* ignore */ }
     }
     if (n.link) navigate(n.link)
     else load()
@@ -38,7 +38,7 @@ export default function Notifications() {
   }
 
   const remove = async (n) => {
-    try { await api.delete(`/api/notifications/${n.id}`) } catch { /* ignore */ }
+    try { await api.delete(`/notifications/${n.id}`) } catch { /* ignore */ }
     load()
   }
 
@@ -72,4 +72,5 @@ export default function Notifications() {
     </div>
   )
 }
+
 

@@ -86,7 +86,7 @@ export default function SupportCenter() {
   const openThread = async (t) => {
     setError('')
     try {
-      const res = await api.get(`/api/support/${t.id}`)
+      const res = await api.get(`/support/${t.id}`)
       setActive(res.ticket)
       setView('thread')
       setReply('')
@@ -101,7 +101,7 @@ export default function SupportCenter() {
     setError('')
     setSubmitting(true)
     try {
-      const res = await api.post(`/api/support/${active.id}/reply`, { message: reply })
+      const res = await api.post(`/support/${active.id}/reply`, { message: reply })
       setActive(res.ticket)
       setReply('')
       load()
@@ -267,4 +267,5 @@ export default function SupportCenter() {
     </div>
   )
 }
+
 

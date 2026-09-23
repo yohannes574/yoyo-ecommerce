@@ -51,7 +51,7 @@ export default function Catalog({ category, search, showCategoryFilter = false }
     setLoading(true)
     setError('')
     api
-      .get(`/api/products?${qs}`)
+      .get(`/products?${qs}`)
       .then((d) => {
         if (cancelled) return
         setProducts(d.products)

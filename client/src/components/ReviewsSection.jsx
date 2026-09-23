@@ -45,7 +45,7 @@ export default function ReviewsSection({ productId }) {
 
   const loadReviews = () => {
     api
-      .get(`/api/reviews/product/${productId}`)
+      .get(`/reviews/product/${productId}`)
       .then((d) => setData(d))
       .catch(() => setError('Could not load reviews.'))
       .finally(() => setLoading(false))
@@ -57,7 +57,7 @@ export default function ReviewsSection({ productId }) {
     loadReviews()
     if (user) {
       api
-        .get(`/api/reviews/can-review/${productId}`)
+        .get(`/reviews/can-review/${productId}`)
         .then(setEligibility)
         .catch(() => {})
     } else {
@@ -190,4 +190,5 @@ export default function ReviewsSection({ productId }) {
     </section>
   )
 }
+
 

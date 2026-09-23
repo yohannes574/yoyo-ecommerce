@@ -97,7 +97,7 @@ export default function Addresses() {
     setSaving(true)
     try {
       if (editingId) {
-        await api.patch(`/api/addresses/${editingId}`, formData)
+        await api.patch(`/addresses/${editingId}`, formData)
       } else {
         await api.post('/addresses', formData)
       }
@@ -112,7 +112,7 @@ export default function Addresses() {
 
   const handleSetDefault = async (id) => {
     try {
-      await api.put(`/api/addresses/${id}/default`)
+      await api.put(`/addresses/${id}/default`)
       await fetchAddresses()
     } catch (err) {
       alert(err.message || 'Failed to update default address')
@@ -122,7 +122,7 @@ export default function Addresses() {
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to remove this address?')) return
     try {
-      await api.delete(`/api/addresses/${id}`)
+      await api.delete(`/addresses/${id}`)
       await fetchAddresses()
     } catch (err) {
       alert(err.message || 'Failed to delete address')
@@ -358,4 +358,5 @@ export default function Addresses() {
     </div>
   )
 }
+
 

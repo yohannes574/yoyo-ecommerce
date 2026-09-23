@@ -41,7 +41,7 @@ export default function NotificationBell() {
   const markRead = async (n) => {
     if (!n.read) {
       try {
-        await api.post(`/api/notifications/${n.id}/read`)
+        await api.post(`/notifications/${n.id}/read`)
       } catch { /* ignore */ }
     }
     setOpen(false)
@@ -108,4 +108,5 @@ export default function NotificationBell() {
     </div>
   )
 }
+
 

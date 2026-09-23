@@ -24,7 +24,7 @@ export default function OrdersList() {
     setLoading(true)
     setError('')
     try {
-      const url = tab === 'all' ? '/orders' : `/api/orders?status=${tab}`
+      const url = tab === 'all' ? '/orders' : `/orders?status=${tab}`
       const res = await api.get(url)
       setOrders(res.orders || [])
     } catch (err) {
@@ -126,4 +126,5 @@ export default function OrdersList() {
     </div>
   )
 }
+
 
