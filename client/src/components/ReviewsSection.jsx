@@ -74,7 +74,7 @@ export default function ReviewsSection({ productId }) {
     }
     setSubmitting(true)
     try {
-      const res = await api.post('/api/reviews', { productId, rating, comment })
+      const res = await api.post('/reviews', { productId, rating, comment })
       setSuccess(res.message || 'Review submitted for approval.')
       setShowForm(false)
       setRating(0)
@@ -190,3 +190,4 @@ export default function ReviewsSection({ productId }) {
     </section>
   )
 }
+

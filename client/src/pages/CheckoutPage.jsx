@@ -78,7 +78,7 @@ export default function CheckoutPage() {
   // Load saved addresses
   const loadAddresses = async () => {
     try {
-      const res = await api.get('/api/addresses')
+      const res = await api.get('/addresses')
       const list = res.addresses || []
       setAddresses(list)
       if (list.length > 0) {
@@ -97,7 +97,7 @@ export default function CheckoutPage() {
   useEffect(() => {
     loadAddresses()
     api
-      .get('/api/payments/config')
+      .get('/payments/config')
       .then((d) => setMobilePay({ enabled: !!d.enabled, providers: d.providers || [], mode: d.mode }))
       .catch(() => {})
   }, [])
@@ -113,7 +113,7 @@ export default function CheckoutPage() {
 
     try {
       setLoading(true)
-      const res = await api.post('/api/addresses', newAddress)
+      const res = await api.post('/addresses', newAddress)
       await loadAddresses()
       if (res.address?.id) {
         setSelectedAddressId(res.address.id)
@@ -133,7 +133,7 @@ export default function CheckoutPage() {
     setPromoError('')
     setValidatingPromo(true)
     try {
-      const res = await api.post('/api/checkouts/validate-promo', { promoCode: promoInput.trim() })
+      const res = await api.post('/checkouts/validate-promo', { promoCode: promoInput.trim() })
       setAppliedPromo(res.promo)
       setPromoError('')
     } catch (err) {
@@ -161,7 +161,7 @@ export default function CheckoutPage() {
     formData.append('receipt', file)
 
     try {
-      const res = await api.post('/api/checkouts/upload-receipt', formData, {
+      const res = await api.post('/checkouts/upload-receipt', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       })
       setReceiptUrl(res.url)
@@ -250,13 +250,13 @@ export default function CheckoutPage() {
         receiptUrl: paymentMethod === 'bank_transfer' ? receiptUrl : undefined,
       }
 
-      const res = await api.post('/api/checkouts', payload)
+      const res = await api.post('/checkouts', payload)
       await refreshCart()
 
       // Mobile money: create the order, then redirect to the gateway checkout
       if (paymentMethod === 'mobile') {
         try {
-          const init = await api.post('/api/payments/init', { orderId: res.order.id, provider: 'mobile' })
+          const init = await api.post('/payments/init', { orderId: res.order.id, provider: 'mobile' })
           window.location.href = init.checkoutUrl
           return
         } catch {
@@ -858,3 +858,4 @@ export default function CheckoutPage() {
     </div>
   )
 }
+

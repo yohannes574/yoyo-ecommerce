@@ -11,7 +11,7 @@ export default function Notifications() {
 
   const load = useCallback(() => {
     api
-      .get('/api/notifications')
+      .get('/notifications')
       .then((res) => {
         setItems(res.notifications || [])
         setUnread(res.unread || 0)
@@ -33,7 +33,7 @@ export default function Notifications() {
   }
 
   const markAll = async () => {
-    try { await api.post('/api/notifications/mark-all-read') } catch { /* ignore */ }
+    try { await api.post('/notifications/mark-all-read') } catch { /* ignore */ }
     load()
   }
 
@@ -72,3 +72,4 @@ export default function Notifications() {
     </div>
   )
 }
+

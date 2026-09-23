@@ -36,7 +36,7 @@ export default function SupportCenter() {
 
   const load = useCallback(() => {
     api
-      .get('/api/support')
+      .get('/support')
       .then((res) => setTickets(res.tickets || []))
       .catch(() => {})
       .finally(() => setLoading(false))
@@ -54,7 +54,7 @@ export default function SupportCenter() {
     try {
       const fd = new FormData()
       fd.append('attachment', file)
-      const res = await api.post('/api/support/upload-attachment', fd, {
+      const res = await api.post('/support/upload-attachment', fd, {
         headers: { 'Content-Type': 'multipart/form-data' },
       })
       setForm((f) => ({ ...f, attachment: res.url }))
@@ -71,7 +71,7 @@ export default function SupportCenter() {
     setSuccess('')
     setSubmitting(true)
     try {
-      const res = await api.post('/api/support', form)
+      const res = await api.post('/support', form)
       setSuccess(res.message)
       setForm(EMPTY_FORM)
       setView('list')
@@ -267,3 +267,4 @@ export default function SupportCenter() {
     </div>
   )
 }
+

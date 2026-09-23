@@ -48,7 +48,7 @@ export default function Addresses() {
     setLoading(true)
     setError('')
     try {
-      const res = await api.get('/api/addresses')
+      const res = await api.get('/addresses')
       setAddresses(res.addresses || [])
     } catch (err) {
       setError(err.message || 'Failed to load addresses')
@@ -99,7 +99,7 @@ export default function Addresses() {
       if (editingId) {
         await api.patch(`/api/addresses/${editingId}`, formData)
       } else {
-        await api.post('/api/addresses', formData)
+        await api.post('/addresses', formData)
       }
       setShowModal(false)
       await fetchAddresses()
@@ -358,3 +358,4 @@ export default function Addresses() {
     </div>
   )
 }
+

@@ -12,7 +12,7 @@ export function WishlistProvider({ children }) {
   const refresh = useCallback(async () => {
     setLoading(true)
     try {
-      const d = await api.get('/api/wishlist')
+      const d = await api.get('/wishlist')
       setProducts(d.wishlist.products)
     } catch {
       setProducts([])
@@ -35,7 +35,7 @@ export function WishlistProvider({ children }) {
       setProducts(d.wishlist.products)
       return false
     }
-    const d = await api.post('/api/wishlist', { productId: product.id })
+    const d = await api.post('/wishlist', { productId: product.id })
     setProducts(d.wishlist.products)
     return true
   }

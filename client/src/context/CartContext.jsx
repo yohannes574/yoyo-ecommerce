@@ -16,7 +16,7 @@ export function CartProvider({ children }) {
     setLoading(true)
     setError(null)
     try {
-      const d = await api.get('/api/cart')
+      const d = await api.get('/cart')
       setCart(d.cart)
     } catch (e) {
       setError(e.message)
@@ -32,25 +32,25 @@ export function CartProvider({ children }) {
 
   const addToCart = async (productId, variantName = '', qty = 1) => {
     setError(null)
-    const d = await api.post('/api/cart/items', { productId, variantName, qty })
+    const d = await api.post('/cart/items', { productId, variantName, qty })
     setCart(d.cart)
     return d.cart
   }
 
   const setQty = async (productId, variantName = '', qty) => {
-    const d = await api.patch('/api/cart/items', { productId, variantName, qty })
+    const d = await api.patch('/cart/items', { productId, variantName, qty })
     setCart(d.cart)
     return d.cart
   }
 
   const removeItem = async (productId, variantName = '') => {
-    const d = await api.delete('/api/cart/items', { data: { productId, variantName } })
+    const d = await api.delete('/cart/items', { data: { productId, variantName } })
     setCart(d.cart)
     return d.cart
   }
 
   const clearCart = async () => {
-    const d = await api.delete('/api/cart')
+    const d = await api.delete('/cart')
     setCart(d.cart)
     return d.cart
   }

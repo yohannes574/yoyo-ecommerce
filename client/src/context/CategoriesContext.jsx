@@ -8,7 +8,7 @@ export function CategoriesProvider({ children }) {
 
   useEffect(() => {
     api
-      .get('/api/categories')
+      .get('/categories')
       .then((d) => setCategories(d.categories))
       .catch(() => setCategories([]))
   }, [])

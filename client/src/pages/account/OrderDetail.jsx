@@ -46,7 +46,7 @@ export default function OrderDetail() {
 
   const loadReturnInfo = () => {
     api
-      .get('/api/returns')
+      .get('/returns')
       .then((res) => {
         const match = (res.returns || []).find((r) => r.orderNumber === orderRef.current)
         setReturnInfo(match || null)
@@ -410,3 +410,4 @@ export default function OrderDetail() {
     </div>
   )
 }
+

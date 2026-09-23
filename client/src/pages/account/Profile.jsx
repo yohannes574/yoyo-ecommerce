@@ -31,7 +31,7 @@ export default function Profile() {
 
     setProfileSaving(true)
     try {
-      await api.patch('/api/auth/profile', { name, phone })
+      await api.patch('/auth/profile', { name, phone })
       setProfileSuccess('Profile details updated successfully.')
     } catch (err) {
       setProfileError(err.message || 'Failed to update profile')
@@ -62,7 +62,7 @@ export default function Profile() {
 
     setPwdSaving(true)
     try {
-      await api.patch('/api/auth/change-password', { currentPassword, newPassword })
+      await api.patch('/auth/change-password', { currentPassword, newPassword })
       setPwdSuccess('Your password has been changed successfully.')
       setCurrentPassword('')
       setNewPassword('')
@@ -185,3 +185,4 @@ export default function Profile() {
     </div>
   )
 }
+

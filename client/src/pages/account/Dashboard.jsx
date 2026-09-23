@@ -15,8 +15,8 @@ export default function Dashboard() {
 
   useEffect(() => {
     Promise.allSettled([
-      api.get('/api/orders'),
-      api.get('/api/addresses'),
+      api.get('/orders'),
+      api.get('/addresses'),
     ]).then(([ordersRes, addrRes]) => {
       if (ordersRes.status === 'fulfilled') {
         setOrders(ordersRes.value.orders || [])
@@ -157,3 +157,4 @@ export default function Dashboard() {
     </div>
   )
 }
+

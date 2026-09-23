@@ -16,7 +16,7 @@ export default function NotificationBell() {
   const load = useCallback(() => {
     if (!user) return
     api
-      .get('/api/notifications')
+      .get('/notifications')
       .then((res) => {
         setItems(res.notifications || [])
         setUnread(res.unread || 0)
@@ -51,7 +51,7 @@ export default function NotificationBell() {
 
   const markAll = async () => {
     try {
-      await api.post('/api/notifications/mark-all-read')
+      await api.post('/notifications/mark-all-read')
       load()
     } catch { /* ignore */ }
   }
@@ -108,3 +108,4 @@ export default function NotificationBell() {
     </div>
   )
 }
+

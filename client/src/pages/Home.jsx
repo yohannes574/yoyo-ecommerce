@@ -12,7 +12,7 @@ export default function Home() {
 
   useEffect(() => {
     api
-      .get('/api/content')
+      .get('/content')
       .then((d) => {
         setBanners(d.banners || [])
         setSections(d.sections || {})

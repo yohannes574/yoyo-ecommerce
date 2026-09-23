@@ -38,7 +38,7 @@ export default function ReturnRequestModal({ order, onClose, onRequested }) {
     try {
       const fd = new FormData()
       fd.append('evidence', file)
-      const res = await api.post('/api/returns/upload-evidence', fd, {
+      const res = await api.post('/returns/upload-evidence', fd, {
         headers: { 'Content-Type': 'multipart/form-data' },
       })
       setEvidence((prev) => [...prev, res.url])
@@ -69,7 +69,7 @@ export default function ReturnRequestModal({ order, onClose, onRequested }) {
     }
     setSubmitting(true)
     try {
-      const res = await api.post('/api/returns', {
+      const res = await api.post('/returns', {
         orderId: order.id,
         items: selected.map((it) => ({
           productId: it.productId || it.product,
@@ -203,3 +203,4 @@ export default function ReturnRequestModal({ order, onClose, onRequested }) {
     </div>
   )
 }
+
