@@ -1,6 +1,8 @@
 import axios from 'axios'
 
-const api = axios.create({ baseURL: '' }) // /api + /uploads proxied by Vite
+const api = axios.create({
+  baseURL: import.meta.env.VITE_API_URL,
+}) // /api + /uploads proxied by Vite
 
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('yoyo_token')
