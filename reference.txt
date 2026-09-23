@@ -1,0 +1,2453 @@
+🛒 Single-Vendor Ethiopian E-Commerce System
+Complete System Blueprint
+1. SYSTEM STRUCTURE
+                    SINGLE COMPANY
+                         │
+                         │
+                ┌────────┴────────┐
+                │                 │
+             CUSTOMER           ADMIN
+                │                 │
+                │           ┌─────┴─────┐
+                │           │           │
+                │         OWNER       STAFF
+                │                       │
+                │              ┌────────┼────────┐
+                │              │        │        │
+                │           Orders   Products  Support
+                │
+                └───────────────┐
+                                │
+                         COMPANY PRODUCTS
+                                │
+              ┌─────────────────┼─────────────────┐
+              │                 │                 │
+          Electronics        Cosmetics        Computers
+              │
+          etc...
+2. PRODUCT CATEGORIES
+
+Initial categories:
+
+Electronics
+Computers
+Cosmetics
+Chicken Equipment
+Jewellery
+Baby Products
+Sports Products
+Car Products
+Women's Products
+
+The admin can create additional categories later.
+
+Categories can also contain subcategories.
+
+Example:
+
+Electronics
+├── Phones
+├── TVs
+├── Headphones
+├── Speakers
+└── Cameras
+
+Computers
+├── Laptops
+├── Desktops
+├── Monitors
+├── Keyboards
+└── Accessories
+
+Sports
+├── Fitness
+├── Football
+├── Running
+└── Gym Equipment
+3. CUSTOMER SIDE
+Complete Customer Page Map
+CUSTOMER WEBSITE
+
+PUBLIC
+│
+├── Home
+├── Shop
+├── Categories
+├── Search Results
+├── Product Details
+├── About Us
+├── Contact Us
+├── Help Center
+├── FAQ
+├── Terms & Conditions
+├── Privacy Policy
+├── Return Policy
+└── Delivery Information
+
+AUTHENTICATION
+│
+├── Login
+├── Register
+├── Verify Email/Phone
+├── Forgot Password
+└── Reset Password
+
+CUSTOMER ACCOUNT
+│
+├── Dashboard
+├── Profile
+├── Addresses
+├── Wishlist
+├── Cart
+├── Checkout
+├── Orders
+│   ├── Active Orders
+│   ├── Order History
+│   └── Order Details
+│
+├── Reviews
+├── Notifications
+├── Support Tickets
+├── Security
+├── Language
+├── Appearance
+└── Logout
+4. PUBLIC HOME PAGE
+
+The customer can visit the homepage without logging in.
+
+┌─────────────────────────────────────────┐
+│ LOGO   Categories   Shop   Search       │
+│                  Wishlist Cart Account  │
+├─────────────────────────────────────────┤
+│                                         │
+│             HERO BANNER                 │
+│       "Discover Our Products"           │
+│                                         │
+│             [SHOP NOW]                  │
+│                                         │
+├─────────────────────────────────────────┤
+│             CATEGORIES                  │
+├─────────────────────────────────────────┤
+│           NEW ARRIVALS                  │
+├─────────────────────────────────────────┤
+│          BEST SELLERS                   │
+├─────────────────────────────────────────┤
+│       SPECIAL OFFERS / DISCOUNTS        │
+├─────────────────────────────────────────┤
+│          FEATURED PRODUCTS              │
+├─────────────────────────────────────────┤
+│              FOOTER                     │
+└─────────────────────────────────────────┘
+Actions
+
+Logo
+
+Logo → Home
+
+Categories
+
+Categories → Category menu
+
+Shop
+
+Shop → All products
+
+Search
+
+Search
+ ↓
+Enter "laptop"
+ ↓
+Search Results
+
+Wishlist
+
+If logged in → Wishlist
+If not logged in → Login
+
+Cart
+
+Cart → Cart page
+
+Account
+
+Logged out → Login
+Logged in → Account dashboard
+5. CATEGORY PAGE
+
+Example:
+
+Electronics
+
+URL concept:
+
+/category/electronics
+
+Page:
+
+Electronics
+
+Subcategories
+
+Filters
+├── Price
+├── Brand
+├── Rating
+├── Availability
+└── Specifications
+
+Sort
+├── Newest
+├── Price Low → High
+├── Price High → Low
+├── Best Selling
+└── Highest Rated
+
+Products
+Actions
+Click product
+    ↓
+Product Details
+Wishlist
+    ↓
+Add / Remove Wishlist
+Add to Cart
+    ↓
+Cart updated
+6. SEARCH PAGE
+Search Results
+
+Search: "Laptop"
+
+Found 25 products
+
+Filters:
+
+Category
+Brand
+Price
+Rating
+Availability
+
+Actions:
+
+Search
+Clear search
+Apply filters
+Clear filters
+Sort
+View product
+Add to wishlist
+Add to cart
+
+If no results:
+
+No products found.
+
+[Continue Shopping]
+7. PRODUCT DETAILS PAGE
+
+This is one of the most important pages.
+
+PRODUCT DETAILS
+
+┌───────────────┬──────────────────────────┐
+│               │ Product Name             │
+│   Product     │ ⭐⭐⭐⭐⭐                │
+│   Images      │ Price                    │
+│               │ Discount                 │
+│               │ Stock status             │
+│               │ Quantity                 │
+│               │ Variant                  │
+│               │                          │
+│               │ [Add to Cart]            │
+│               │ [Buy Now]                │
+│               │ [♡ Wishlist]             │
+│               │ [Share]                  │
+└───────────────┴──────────────────────────┘
+
+Description
+
+Specifications
+
+Customer Reviews
+
+Related Products
+Actions
+Quantity
+[-] 1 [+]
+
+Cannot exceed available stock.
+
+Add to Cart
+Add to Cart
+ ↓
+Validate stock
+ ↓
+Cart updated
+ ↓
+Show confirmation
+Buy Now
+Buy Now
+ ↓
+Validate stock
+ ↓
+Checkout
+Wishlist
+♡
+ ↓
+Add Wishlist
+
+♥
+ ↓
+Remove Wishlist
+Share
+
+Possible options:
+
+Copy Link
+WhatsApp
+Facebook
+Telegram
+Other
+Reviews
+
+Customer can see:
+
+⭐⭐⭐⭐⭐
+4.7 / 5
+
+Customer reviews
+
+If customer purchased the product:
+
+[Write Review]
+8. WISHLIST
+MY WISHLIST
+
+Product
+Price
+Stock
+Rating
+
+[Add to Cart]
+[Remove]
+
+Actions:
+
+Add to Cart
+ ↓
+Cart
+
+Remove
+ ↓
+Remove from wishlist
+
+Product
+ ↓
+Product details
+
+If product is out of stock:
+
+Out of Stock
+[Remove]
+9. CART
+MY CART
+
+Product
+├── Image
+├── Name
+├── Variant
+├── Price
+├── Quantity
+├── Subtotal
+└── Remove
+
+ORDER SUMMARY
+
+Subtotal
+Discount
+Delivery Fee
+Total
+
+Promo Code
+[Apply]
+
+[Continue Shopping]
+[Proceed to Checkout]
+Actions
++ → Increase quantity
+- → Decrease quantity
+Remove → Remove item
+Apply → Apply promo code
+Continue Shopping → Shop
+Checkout → Checkout
+Important validation
+
+When checkout starts:
+
+Check product still exists
+Check product is active
+Check price
+Check stock
+Check variant
+
+This prevents old cart information from creating bad orders.
+
+10. AUTHENTICATION
+Register
+Create Account
+
+Full Name
+Email
+Phone Number
+Password
+Confirm Password
+
+[Create Account]
+
+Flow:
+
+Register
+ ↓
+Validate information
+ ↓
+Create customer
+ ↓
+Verification
+ ↓
+Account verified
+ ↓
+Login / automatically logged in
+ ↓
+Customer dashboard
+11. ACCOUNT VERIFICATION
+
+Depending on the final authentication design:
+
+Email verification
+OR
+Phone OTP
+OR
+Both
+
+Example:
+
+Enter verification code
+
+[Verify]
+
+Didn't receive code?
+[Resend Code]
+
+Actions:
+
+Verify
+Resend
+Change phone/email
+12. LOGIN
+Login
+
+Email / Phone
+Password
+
+[Login]
+
+[Forgot Password?]
+
+Don't have an account?
+[Create Account]
+
+Flow:
+
+Login
+ ↓
+Validate credentials
+ ↓
+Check account
+ ↓
+Create authentication session/token
+ ↓
+Customer dashboard
+13. FORGOT PASSWORD
+Forgot Password
+
+Email / Phone
+
+[Send Verification Code]
+
+Then:
+
+Verification Code
+ ↓
+New Password
+ ↓
+Confirm Password
+ ↓
+[Reset Password]
+14. CUSTOMER DASHBOARD
+
+After login:
+
+MY ACCOUNT
+
+Hello, Customer
+
+Active Orders: 2
+Completed Orders: 14
+Wishlist: 8
+Unread Notifications: 3
+
+[View Orders]
+[View Wishlist]
+[Edit Profile]
+15. PROFILE
+MY PROFILE
+
+Profile Photo
+
+Full Name
+Email
+Phone
+
+[Edit Profile]
+
+Edit:
+
+Full Name
+Phone Number
+Email
+
+[Save Changes]
+[Cancel]
+
+Email/phone changes may require verification.
+
+16. ADDRESSES
+
+This is important for delivery.
+
+MY ADDRESSES
+
+Home
+Name
+Phone
+Region
+City
+Sub-city
+Woreda
+Address
+
+[Edit]
+[Delete]
+[Set Default]
+
+Buttons:
+
+[+ Add New Address]
+
+Address form:
+
+Full Name
+Phone
+Region
+City
+Sub-city
+Woreda
+Specific Address
+Delivery Instructions
+
+[Save Address]
+17. CHECKOUT
+
+I recommend a structured checkout rather than one huge form.
+
+CHECKOUT
+
+Step 1
+Delivery Address
+
+Step 2
+Delivery Method
+
+Step 3
+Promo Code
+
+Step 4
+Payment Method
+
+Step 5
+Review Order
+
+Step 6
+Place Order
+18. CHECKOUT — ADDRESS
+Select Delivery Address
+
+○ Home
+○ Office
+○ Other
+
+[+ Add New Address]
+
+[Continue]
+19. CHECKOUT — DELIVERY
+Delivery Method
+
+○ Standard Delivery
+○ Express Delivery (if supported)
+
+Delivery Fee: XXX ETB
+
+[Continue]
+
+The available delivery methods can depend on the customer's location.
+
+20. CHECKOUT — PROMO CODE
+Promo Code
+
+[________________]
+[Apply]
+
+Discount: XXX ETB
+
+If invalid:
+
+Invalid or expired promo code.
+21. CHECKOUT — PAYMENT
+PAYMENT METHOD
+
+○ Mobile Payment
+○ Bank Transfer
+○ Cash on Delivery
+22. MOBILE PAYMENT
+Mobile Payment
+
+○ Telebirr
+○ CBE Birr
+○ M-Pesa
+
+[Continue to Payment]
+
+Flow:
+
+Select Telebirr
+ ↓
+Create payment request
+ ↓
+Payment provider
+ ↓
+Customer completes payment
+ ↓
+Payment confirmation
+ ↓
+Return to website
+ ↓
+Order confirmed
+
+The exact integration will depend on the payment APIs/gateway available when we implement it.
+
+23. BANK TRANSFER
+BANK TRANSFER
+
+Select Bank
+
+○ CBE
+○ Bank of Abyssinia
+○ Awash Bank
+○ Dashen Bank
+○ Other supported banks
+
+Account information displayed
+
+Full Name
+Address
+
+Upload Payment Receipt
+
+[Choose File]
+
+[Place Order]
+
+Flow:
+
+Customer uploads receipt
+ ↓
+Order created
+ ↓
+Payment status = Pending Verification
+ ↓
+Admin reviews receipt
+ ↓
+Approve
+      ↓
+Payment Confirmed
+      ↓
+Order Processing
+
+OR
+
+Reject
+ ↓
+Customer notified
+ ↓
+Customer can correct/re-upload
+24. CASH ON DELIVERY
+Cash on Delivery
+
+Order Total
+Delivery Address
+
+[Place Order]
+
+Flow:
+
+Place Order
+ ↓
+Order created
+ ↓
+Payment = Cash on Delivery
+ ↓
+Order Processing
+ ↓
+Delivery
+ ↓
+Customer receives product
+ ↓
+Customer pays
+ ↓
+Order completed
+25. ORDER REVIEW BEFORE PLACING
+
+Before the final button:
+
+ORDER SUMMARY
+
+Products
+Quantity
+Subtotal
+
+Promo Discount
+Delivery Fee
+
+TOTAL
+
+Delivery Address
+Payment Method
+
+[Edit Address]
+[Edit Payment]
+[Place Order]
+
+This is the final confirmation.
+
+26. ORDER CONFIRMATION
+
+After successful order creation:
+
+🎉 ORDER SUCCESSFUL
+
+Thank you for your order!
+
+Order Number:
+#ORD-100001
+
+Total:
+5,450 ETB
+
+Payment:
+Cash on Delivery
+
+Delivery:
+Standard
+
+[Track Order]
+[View Order]
+[Continue Shopping]
+27. MY ORDERS
+MY ORDERS
+
+Tabs:
+
+[All]
+[Active]
+[Completed]
+[Cancelled]
+[Returned]
+
+Order card:
+
+Order #ORD-100001
+Date
+Products
+Total
+Payment
+Status
+
+[View Order]
+28. ORDER DETAILS
+ORDER #ORD-100001
+
+STATUS
+
+✓ Order Placed
+✓ Confirmed
+✓ Processing
+○ Ready for Delivery
+○ Out for Delivery
+○ Delivered
+
+PRODUCTS
+
+Product A
+Qty: 2
+Price: XXX
+
+DELIVERY ADDRESS
+
+...
+
+PAYMENT
+
+Method: Telebirr
+Status: Paid
+
+TOTAL
+
+Subtotal
+Discount
+Delivery
+Total
+
+Buttons depend on status:
+
+[Cancel Order]
+[Contact Support]
+[Request Return]
+[Buy Again]
+29. ORDER STATUS SYSTEM
+
+Main flow:
+
+PENDING
+   ↓
+CONFIRMED
+   ↓
+PROCESSING
+   ↓
+READY_FOR_DELIVERY
+   ↓
+OUT_FOR_DELIVERY
+   ↓
+DELIVERED
+
+Alternative:
+
+PENDING
+   ↓
+CANCELLED
+
+Payment problems:
+
+PAYMENT_PENDING
+PAYMENT_FAILED
+PAYMENT_REJECTED
+
+Returns:
+
+DELIVERED
+   ↓
+RETURN_REQUESTED
+   ↓
+RETURN_APPROVED
+   ↓
+RETURN_RECEIVED
+   ↓
+REFUNDED
+30. CANCELLATION
+
+Customer clicks:
+
+[Cancel Order]
+
+System checks:
+
+Can order still be cancelled?
+
+If yes:
+
+Select cancellation reason
+
+[Confirm Cancellation]
+
+If no:
+
+This order can no longer be cancelled.
+Please contact support.
+31. REVIEWS
+
+Customer can review eligible purchased products.
+
+WRITE REVIEW
+
+Product
+
+Rating:
+☆ ☆ ☆ ☆ ☆
+
+Comment
+
+[Submit Review]
+
+After submission:
+
+Review submitted
+ ↓
+Pending moderation
+ ↓
+Admin approves
+ ↓
+Review becomes public
+32. NOTIFICATIONS
+
+Customer notification center:
+
+NOTIFICATIONS
+
+Order confirmed
+Payment confirmed
+Order shipped
+Order delivered
+Payment rejected
+Promotion
+Return update
+Support reply
+
+Actions:
+
+Mark as Read
+Mark All as Read
+Delete
+Open Notification
+33. SUPPORT / HELP CENTER
+HELP CENTER
+
+Search questions
+
+FAQ
+
+Orders
+Payments
+Delivery
+Returns
+Account
+
+[Contact Support]
+
+Support ticket:
+
+Subject
+Category
+Message
+Order Number
+Attachment
+
+[Submit Ticket]
+34. CUSTOMER SETTINGS
+SETTINGS
+
+Profile
+Addresses
+Security
+Language
+Appearance
+Notifications
+Help
+Logout
+35. LANGUAGE
+
+Supported:
+
+English
+Amharic
+Oromo
+Tigrinya
+Somali
+Language
+
+○ English
+○ Amharic
+○ Oromo
+○ Tigrinya
+○ Somali
+
+[Save]
+36. APPEARANCE
+Appearance
+
+○ Light
+○ Dark
+○ System
+37. SECURITY
+SECURITY
+
+Change Password
+Login Sessions
+Account Verification
+
+Actions:
+
+[Change Password]
+[Logout Other Devices]
+38. LOGOUT
+Logout
+ ↓
+Confirm?
+ ↓
+Yes
+ ↓
+Clear authentication session
+ ↓
+Home
+39. ADMIN APPLICATION
+
+Now the most important business side.
+
+ADMIN PANEL
+
+Dashboard
+Orders
+Products
+Categories
+Inventory
+Customers
+Payments
+Delivery
+Promotions
+Reviews
+Returns
+Support
+Notifications
+Reports
+Staff
+Content
+Settings
+40. ADMIN SIDEBAR
+┌──────────────────────────┐
+│ COMPANY LOGO             │
+├──────────────────────────┤
+│ Dashboard                │
+│ Orders                   │
+│ Products                 │
+│ Categories               │
+│ Inventory                │
+│ Customers                │
+│ Payments                 │
+│ Delivery                 │
+│ Promotions               │
+│ Reviews                  │
+│ Returns                  │
+│ Support                  │
+│ Notifications            │
+│ Reports                  │
+│ Staff                    │
+│ Content                  │
+│ Settings                 │
+├──────────────────────────┤
+│ Admin Profile            │
+│ Logout                   │
+└──────────────────────────┘
+41. ADMIN DASHBOARD
+ADMIN DASHBOARD
+
+Today's Sales
+125,000 ETB
+
+Orders
+48
+
+Customers
+1,250
+
+Products
+850
+
+Low Stock
+17
+
+Pending Payments
+8
+
+Pending Orders
+12
+
+Sections:
+
+Sales Chart
+Orders Chart
+Top Products
+Top Categories
+Recent Orders
+Low Stock
+Pending Payments
+
+Actions:
+
+[View Orders]
+[View Payments]
+[View Products]
+[View Reports]
+42. ADMIN — PRODUCTS
+PRODUCTS
+
+Search
+
+Filters:
+Category
+Status
+Stock
+Brand
+
+[+ Add Product]
+
+Product Table
+
+Columns:
+
+Image
+Product
+SKU
+Category
+Price
+Stock
+Status
+Actions
+
+Actions:
+
+View
+Edit
+Delete
+Activate
+Deactivate
+Duplicate
+Manage Stock
+43. ADD PRODUCT
+ADD PRODUCT
+
+Basic Information
+
+Product Name
+SKU
+Category
+Subcategory
+Brand
+
+Description
+
+Pricing
+
+Price
+Discount
+Sale Price
+
+Inventory
+
+Stock
+Low Stock Threshold
+
+Images
+
+Upload Images
+
+Variants
+
+Specifications
+
+Status
+
+[Save Product]
+[Save as Draft]
+[Cancel]
+44. EDIT PRODUCT
+
+Same information as Add Product.
+
+Actions:
+
+Save Changes
+Cancel
+Delete
+Deactivate
+45. PRODUCT VARIANTS
+
+Admin can define:
+
+Color
+Size
+Storage
+Capacity
+Model
+
+Example:
+
+Laptop
+
+RAM:
+8GB
+16GB
+
+Storage:
+256GB
+512GB
+1TB
+
+Each variant can have:
+
+SKU
+Price
+Stock
+Images
+46. CATEGORIES MANAGEMENT
+CATEGORIES
+
+Electronics
+Computers
+Cosmetics
+Chicken Equipment
+Jewellery
+Baby Products
+Sports
+Car Products
+Women's Products
+
+Actions:
+
+[+ Add Category]
+Edit
+Delete
+Enable
+Disable
+Reorder
+Add Subcategory
+47. INVENTORY
+INVENTORY
+
+Total Products
+Low Stock
+Out of Stock
+
+Search
+
+Product
+SKU
+Current Stock
+Reserved
+Available
+Threshold
+
+Actions:
+
+[Add Stock]
+[Remove Stock]
+[Adjust Stock]
+[View History]
+48. INVENTORY TRANSACTION
+
+Every stock change should be recorded.
+
+Example:
+
+Product: Laptop
+
+Previous Stock: 20
+Change: +10
+New Stock: 30
+
+Reason:
+New shipment
+
+Performed By:
+Admin
+
+Date:
+...
+
+Types:
+
+RESTOCK
+SALE
+RETURN
+MANUAL_ADJUSTMENT
+DAMAGED
+CANCELLED_ORDER
+49. ADMIN — ORDERS
+ORDERS
+
+Tabs:
+
+All
+Pending
+Confirmed
+Processing
+Ready for Delivery
+Out for Delivery
+Delivered
+Cancelled
+Returned
+
+Order table:
+
+Order #
+Customer
+Date
+Total
+Payment
+Status
+Actions
+
+Actions:
+
+View
+Confirm
+Process
+Assign Delivery
+Cancel
+Print Invoice
+Contact Customer
+50. ADMIN — ORDER DETAILS
+ORDER #ORD-100001
+
+Customer Information
+
+Products
+
+Payment Information
+
+Delivery Information
+
+Order Timeline
+
+Notes
+
+Actions:
+
+Confirm Order
+Change Status
+Cancel Order
+Assign Delivery
+Print Invoice
+Refund
+Contact Customer
+51. ADMIN — PAYMENT MANAGEMENT
+PAYMENTS
+
+All
+Pending
+Successful
+Failed
+Rejected
+Refunded
+
+Columns:
+
+Payment ID
+Order
+Customer
+Method
+Amount
+Status
+Date
+52. BANK TRANSFER VERIFICATION
+
+This is a dedicated workflow.
+
+PENDING PAYMENT
+
+Order #ORD123
+Customer
+Bank: CBE
+Amount: 5,500 ETB
+
+Receipt
+
+[View Receipt]
+
+[Approve Payment]
+[Reject Payment]
+
+Reject:
+
+Reason
+[________________]
+
+[Reject Payment]
+
+Customer receives notification.
+
+53. ADMIN — DELIVERY
+DELIVERY
+
+Delivery Orders
+Delivery Zones
+Delivery Fees
+Delivery Staff
+
+Order:
+
+Order #ORD123
+
+Customer
+Phone
+Address
+City
+Region
+
+Status
+
+[Assign Delivery Staff]
+54. DELIVERY ZONES
+
+Example:
+
+Addis Ababa
+
+Bole
+Yeka
+Kirkos
+Arada
+Kolfe
+Nifas Silk
+...
+
+Admin can:
+
+Add Zone
+Edit Zone
+Delete Zone
+Set Delivery Fee
+Enable/Disable
+
+Later, additional cities can be added.
+
+55. DELIVERY STAFF
+DELIVERY STAFF
+
+Name
+Phone
+Status
+Current Orders
+
+Actions:
+
+Add
+Edit
+Deactivate
+Assign Order
+View Orders
+56. PROMOTIONS
+PROMOTIONS
+
+Promo Codes
+Discounts
+Flash Sales
+Featured Products
+Homepage Banners
+57. PROMO CODE MANAGEMENT
+CREATE PROMO CODE
+
+Code
+Discount Type
+├── Percentage
+└── Fixed Amount
+
+Discount Value
+
+Minimum Order
+Maximum Discount
+
+Usage Limit
+
+Start Date
+End Date
+
+Applicable Products
+Applicable Categories
+
+[Create]
+
+Actions:
+
+Edit
+Disable
+Delete
+View Usage
+58. REVIEWS MANAGEMENT
+REVIEWS
+
+Pending
+Approved
+Reported
+Rejected
+
+Actions:
+
+View
+Approve
+Reject
+Delete
+
+Admin can see:
+
+Customer
+Product
+Rating
+Comment
+Date
+59. RETURNS MANAGEMENT
+RETURNS
+
+Requested
+Approved
+Rejected
+Received
+Refunded
+
+Return details:
+
+Order
+Customer
+Product
+Reason
+Evidence
+Status
+
+Actions:
+
+Approve
+Reject
+Mark Received
+Process Refund
+Contact Customer
+60. CUSTOMER MANAGEMENT
+CUSTOMERS
+
+Search
+
+Customer
+Email
+Phone
+Orders
+Total Spent
+Status
+Registered
+
+Actions:
+
+View
+Edit
+Deactivate
+Activate
+View Orders
+View Support
+
+Admin must never see customer passwords.
+
+61. CUSTOMER DETAILS
+CUSTOMER
+
+Profile
+Orders
+Payments
+Addresses
+Reviews
+Wishlist
+Support Tickets
+Activity
+
+Actions:
+
+Edit
+Deactivate
+View Orders
+Contact Customer
+62. SUPPORT MANAGEMENT
+SUPPORT
+
+Open
+In Progress
+Waiting for Customer
+Resolved
+Closed
+
+Ticket:
+
+Customer
+Order
+Subject
+Conversation
+Attachments
+
+Actions:
+
+Reply
+Assign Staff
+Change Status
+Close Ticket
+63. ADMIN NOTIFICATIONS
+NOTIFICATIONS
+
+New Order
+New Bank Receipt
+Payment Rejected
+Low Stock
+New Customer
+New Review
+New Return
+New Support Ticket
+
+Actions:
+
+Mark Read
+Mark All Read
+Open
+64. REPORTS
+REPORTS
+
+Sales
+Orders
+Products
+Inventory
+Customers
+Payments
+Delivery
+Returns
+Sales report
+Revenue
+Orders
+Average Order Value
+Discounts
+Delivery Revenue
+
+Filters:
+
+Today
+Yesterday
+7 Days
+30 Days
+This Month
+Last Month
+Custom Range
+
+Export:
+
+Export CSV
+Export Excel
+Print
+65. PRODUCT REPORT
+TOP PRODUCTS
+
+Product
+Units Sold
+Revenue
+Stock
+
+Useful reports:
+
+Best Selling
+Worst Selling
+Low Stock
+Out of Stock
+Highest Revenue
+66. CUSTOMER REPORT
+Customers
+New Customers
+Returning Customers
+Top Customers
+Total Customer Spending
+67. STAFF MANAGEMENT
+
+Only Super Admin/Owner should have complete control.
+
+STAFF
+
+Name
+Email
+Phone
+Role
+Status
+Last Login
+
+Actions:
+
+[+ Add Staff]
+Edit
+Deactivate
+Reset Password
+Change Role
+68. STAFF ROLES
+
+Recommended:
+
+SUPER ADMIN
+ADMIN
+PRODUCT MANAGER
+ORDER MANAGER
+INVENTORY MANAGER
+PAYMENT MANAGER
+DELIVERY MANAGER
+SUPPORT AGENT
+MARKETING MANAGER
+
+Permissions should be configurable.
+
+69. ROLE PERMISSION SYSTEM
+
+Example:
+
+PRODUCT MANAGER
+
+Products       ✓
+Categories     ✓
+Inventory      Limited
+Orders         ✕
+Payments       ✕
+Customers      ✕
+Reports        Limited
+
+The backend must enforce permissions, not just hide buttons in React.
+
+70. CONTENT MANAGEMENT
+
+Admin can control homepage content.
+
+CONTENT
+
+Homepage
+├── Hero Banners
+├── Category Sections
+├── Featured Products
+├── New Arrivals
+├── Best Sellers
+└── Promotional Sections
+
+Actions:
+
+Add Banner
+Edit Banner
+Delete Banner
+Activate
+Deactivate
+Reorder
+71. COMPANY SETTINGS
+SETTINGS
+
+Company Information
+Payment Methods
+Banks
+Delivery
+Taxes
+Currency
+Languages
+Notifications
+Security
+
+Company information:
+
+Company Name
+Logo
+Phone
+Email
+Address
+Social Media
+72. BANK SETTINGS
+
+Admin can configure supported bank accounts:
+
+CBE
+Abyssinia
+Awash
+Dashen
+Other
+
+Each:
+
+Bank Name
+Account Name
+Account Number
+Branch
+Instructions
+Status
+73. PAYMENT SETTINGS
+Payment Methods
+
+Telebirr       ON
+CBE Birr       ON
+M-Pesa         ON
+Bank Transfer  ON
+Cash Delivery  ON
+
+Admin can enable/disable methods.
+
+74. DELIVERY SETTINGS
+Delivery
+
+Default Delivery Fee
+Delivery Zones
+Free Delivery Threshold
+Express Delivery
+Estimated Delivery Time
+75. SECURITY SETTINGS
+Security
+
+Password Policy
+Admin 2FA
+Session Management
+Login Attempts
+Account Lockout
+
+Admin security should be stricter than customer security.
+
+76. CUSTOMER → PRODUCT → ORDER FLOW
+
+The main business flow is:
+
+Customer
+   ↓
+Home
+   ↓
+Category / Search
+   ↓
+Product Details
+   ↓
+Choose Variant
+   ↓
+Choose Quantity
+   ↓
+Add to Cart
+   ↓
+Cart
+   ↓
+Checkout
+   ↓
+Address
+   ↓
+Delivery
+   ↓
+Promo
+   ↓
+Payment
+   ↓
+Review Order
+   ↓
+Place Order
+   ↓
+Order Created
+   ↓
+Admin receives order
+   ↓
+Admin confirms
+   ↓
+Processing
+   ↓
+Delivery
+   ↓
+Customer receives product
+   ↓
+Delivered
+   ↓
+Customer reviews product
+77. BANK TRANSFER FLOW
+Customer
+ ↓
+Checkout
+ ↓
+Bank Transfer
+ ↓
+Select Bank
+ ↓
+View Company Bank Account
+ ↓
+Customer transfers money
+ ↓
+Upload Receipt
+ ↓
+Place Order
+ ↓
+Payment = Pending Verification
+ ↓
+Admin Notification
+ ↓
+Admin Reviews Receipt
+ │
+ ├── Approve
+ │      ↓
+ │   Payment Confirmed
+ │      ↓
+ │   Order Processing
+ │
+ └── Reject
+        ↓
+     Customer Notification
+        ↓
+     Upload New Receipt
+78. MOBILE PAYMENT FLOW
+Customer
+ ↓
+Checkout
+ ↓
+Mobile Payment
+ ↓
+Select Provider
+ ↓
+Payment Gateway
+ ↓
+Customer Pays
+ ↓
+Provider Confirmation
+ ↓
+Backend verifies payment
+ ↓
+Payment Successful
+ ↓
+Order Confirmed
+ ↓
+Processing
+79. CASH-ON-DELIVERY FLOW
+Customer
+ ↓
+Checkout
+ ↓
+Cash on Delivery
+ ↓
+Place Order
+ ↓
+Order Confirmed
+ ↓
+Processing
+ ↓
+Ready
+ ↓
+Out for Delivery
+ ↓
+Customer Receives
+ ↓
+Customer Pays Cash
+ ↓
+Delivered
+80. ADMIN ORDER FLOW
+NEW ORDER
+    ↓
+Admin Notification
+    ↓
+View Order
+    ↓
+Check Payment
+    ↓
+Check Inventory
+    ↓
+Confirm Order
+    ↓
+Prepare Products
+    ↓
+Processing
+    ↓
+Ready for Delivery
+    ↓
+Assign Delivery
+    ↓
+Out for Delivery
+    ↓
+Delivered
+81. INVENTORY + ORDER CONNECTION
+
+This is very important.
+
+Suppose:
+
+Laptop stock = 10
+
+Customer orders:
+
+2 laptops
+
+System:
+
+Stock = 10
+     ↓
+Order placed
+     ↓
+Reserved = 2
+     ↓
+Available = 8
+
+When order is completed:
+
+Stock decreases accordingly.
+
+If order is cancelled:
+
+Reserved stock is released.
+
+This prevents overselling.
+
+82. ORDER + PAYMENT CONNECTION
+
+Every order has a payment state.
+
+Example:
+
+ORDER
+#ORD123
+
+Order Status:
+PROCESSING
+
+Payment Status:
+PAID
+
+Payment Method:
+Telebirr
+
+Or:
+
+Order Status:
+PENDING
+
+Payment Status:
+PENDING_VERIFICATION
+
+Payment Method:
+BANK_TRANSFER
+
+Or:
+
+Order Status:
+PROCESSING
+
+Payment Status:
+COD_PENDING
+
+Payment Method:
+CASH_ON_DELIVERY
+
+These should be separate concepts.
+
+83. CUSTOMER NOTIFICATION FLOW
+Order Created
+ ↓
+"Your order has been received."
+
+Payment Approved
+ ↓
+"Your payment has been confirmed."
+
+Order Processing
+ ↓
+"Your order is being prepared."
+
+Out for Delivery
+ ↓
+"Your order is on the way."
+
+Delivered
+ ↓
+"Your order has been delivered."
+
+Review
+ ↓
+"How was your purchase?"
+84. ADMIN NOTIFICATION FLOW
+New Order
+ ↓
+Admin Notification
+
+Bank Receipt Uploaded
+ ↓
+Payment Staff Notification
+
+Low Stock
+ ↓
+Inventory Notification
+
+New Return
+ ↓
+Return Staff Notification
+
+New Support Ticket
+ ↓
+Support Notification
+85. COMPLETE CUSTOMER JOURNEY
+                    CUSTOMER
+                       │
+                       ▼
+                    WEBSITE
+                       │
+                 ┌─────┴─────┐
+                 │           │
+              Register     Login
+                 │           │
+                 └─────┬─────┘
+                       │
+                       ▼
+                     HOME
+                       │
+           ┌───────────┼───────────┐
+           ▼           ▼           ▼
+        Search     Categories   New Arrivals
+           │           │           │
+           └───────────┼───────────┘
+                       ▼
+                  PRODUCT PAGE
+                       │
+            ┌──────────┼───────────┐
+            ▼          ▼           ▼
+        Wishlist      Cart       Buy Now
+                       │           │
+                       └─────┬─────┘
+                             ▼
+                          CHECKOUT
+                             │
+                       Delivery Address
+                             │
+                       Delivery Method
+                             │
+                        Promo Code
+                             │
+                        Payment
+                             │
+                    Review Order
+                             │
+                       Place Order
+                             │
+                             ▼
+                       ORDER CREATED
+                             │
+                             ▼
+                        PROCESSING
+                             │
+                             ▼
+                     OUT FOR DELIVERY
+                             │
+                             ▼
+                         DELIVERED
+                             │
+                    ┌────────┴────────┐
+                    ▼                 ▼
+                  Review          Buy Again
+86. COMPLETE ADMIN JOURNEY
+                      ADMIN
+                        │
+                        ▼
+                     LOGIN
+                        │
+                        ▼
+                   DASHBOARD
+                        │
+       ┌────────────────┼─────────────────┐
+       ▼                ▼                 ▼
+    ORDERS          PRODUCTS          PAYMENTS
+       │                │                 │
+       ▼                ▼                 ▼
+   Process          Manage             Verify
+   Orders           Inventory          Payments
+       │                │                 │
+       └────────────────┼─────────────────┘
+                        ▼
+                    DELIVERY
+                        │
+                        ▼
+                    COMPLETED
+                        │
+                        ▼
+                     REPORTS
+87. COMPLETE BUSINESS LOOP
+
+The entire business works like this:
+
+                 COMPANY
+                    │
+                    ▼
+              Add Products
+                    │
+                    ▼
+               Set Inventory
+                    │
+                    ▼
+               CUSTOMER
+                    │
+                    ▼
+              Browse Products
+                    │
+                    ▼
+                  CART
+                    │
+                    ▼
+                CHECKOUT
+                    │
+                    ▼
+                 PAYMENT
+                    │
+                    ▼
+                  ORDER
+                    │
+                    ▼
+                 ADMIN
+                    │
+                    ▼
+               PREPARATION
+                    │
+                    ▼
+                DELIVERY
+                    │
+                    ▼
+                CUSTOMER
+                    │
+                    ▼
+                 REVIEW
+                    │
+                    ▼
+                  REPORTS
+                    │
+                    ▼
+                 COMPANY
+88. MVP — WHAT WE BUILD FIRST
+
+Although the blueprint is large, we should not build everything at once.
+
+MVP Version 1
+CUSTOMER
+
+✓ Register
+✓ Login
+✓ Verification
+✓ Home
+✓ Categories
+✓ Products
+✓ Search
+✓ Product Details
+✓ Wishlist
+✓ Cart
+✓ Address
+✓ Checkout
+✓ Cash on Delivery
+✓ Bank Transfer
+✓ Order History
+✓ Order Tracking
+✓ Profile
+✓ Change Password
+✓ Logout
+ADMIN MVP
+✓ Admin Login
+✓ Dashboard
+✓ Products
+✓ Categories
+✓ Inventory
+✓ Orders
+✓ Customers
+✓ Bank Payment Verification
+✓ Delivery Status
+✓ Basic Promotions
+✓ Basic Reports
+89. VERSION 2
+
+After MVP:
+
+Mobile Payment Integration
+Reviews
+Returns
+Refunds
+Notifications
+Support Tickets
+Multiple Delivery Zones
+Staff Roles
+Advanced Reports
+Homepage CMS
+90. VERSION 3
+
+Later:
+
+Advanced recommendations
+Recently viewed
+Advanced analytics
+SMS notifications
+Email notifications
+Advanced delivery tracking
+Loyalty system
+Customer wallet
+Product comparison
+Advanced promotions
+91. THE MOST IMPORTANT ARCHITECTURAL PRINCIPLE
+
+Because there is only one seller, the database relationship is much simpler:
+
+COMPANY
+   │
+   ├── Categories
+   │       │
+   │       └── Products
+   │              │
+   │              └── Inventory
+   │
+   ├── Customers
+   │       │
+   │       ├── Cart
+   │       ├── Wishlist
+   │       ├── Addresses
+   │       └── Orders
+   │
+   ├── Payments
+   │
+   ├── Delivery
+   │
+   ├── Promotions
+   │
+   ├── Reviews
+   │
+   └── Support
+
+There is no sellerId on every product, because every product belongs to the same company.
+
+That makes this significantly simpler than a marketplace.
+
+92. FINAL PAGE INVENTORY
+Customer
+PUBLIC
+1. Home
+2. Shop
+3. Categories
+4. Category Products
+5. Search Results
+6. Product Details
+7. About Us
+8. Contact Us
+9. Help Center
+10. FAQ
+11. Terms
+12. Privacy
+13. Return Policy
+14. Delivery Information
+
+AUTH
+15. Login
+16. Register
+17. Verification
+18. Forgot Password
+19. Reset Password
+
+ACCOUNT
+20. Dashboard
+21. Profile
+22. Addresses
+23. Wishlist
+24. Cart
+25. Checkout
+26. Order Confirmation
+27. Orders
+28. Order Details
+29. Reviews
+30. Notifications
+31. Support
+32. Security
+33. Language
+34. Appearance
+35. Logout
+Admin
+1. Login
+2. Dashboard
+3. Orders
+4. Order Details
+5. Products
+6. Add Product
+7. Edit Product
+8. Product Variants
+9. Categories
+10. Inventory
+11. Inventory History
+12. Customers
+13. Customer Details
+14. Payments
+15. Payment Verification
+16. Delivery
+17. Delivery Zones
+18. Delivery Staff
+19. Promotions
+20. Promo Codes
+21. Reviews
+22. Returns
+23. Support
+24. Notifications
+25. Reports
+26. Staff
+27. Roles & Permissions
+28. Content Management
+29. Homepage Management
+30. Company Settings
+31. Payment Settings
+32. Bank Settings
+33. Delivery Settings
+34. Security Settings
+35. Admin Profile
+36. Logout
+93. MASTER SYSTEM FLOW
+                         ┌─────────────────┐
+                         │     CUSTOMER    │
+                         └────────┬────────┘
+                                  │
+                    ┌─────────────┴─────────────┐
+                    │                           │
+                 Browse                     Account
+                    │                           │
+             ┌──────┴──────┐             ┌──────┴──────┐
+             │             │             │             │
+          Search       Categories      Wishlist       Orders
+             │             │             │             │
+             └──────┬──────┘             │             │
+                    ▼                     │             │
+               PRODUCT PAGE               │             │
+                    │                     │             │
+             ┌──────┴──────┐              │             │
+             │             │              │             │
+            Cart        Buy Now            │             │
+             │             │               │             │
+             └──────┬──────┘               │             │
+                    ▼                      │             │
+                CHECKOUT                   │             │
+                    │                      │             │
+        ┌───────────┼───────────┐          │             │
+        │           │           │          │             │
+      Address     Delivery    Promo        │             │
+        │           │           │          │             │
+        └───────────┼───────────┘          │             │
+                    ▼                      │             │
+                 PAYMENT                   │             │
+             ┌──────┼──────┐               │             │
+             │      │      │               │             │
+          Mobile   Bank    COD              │             │
+             │    Transfer  │               │             │
+             └──────┼───────┘               │             │
+                    ▼                       │             │
+                  ORDER                     │             │
+                    │                       │             │
+                    ▼                       │             │
+             ┌──────────────┐               │             │
+             │    ADMIN     │◄──────────────┘             │
+             └──────┬───────┘                             │
+                    │                                     │
+             ┌──────┼────────┐                            │
+             │      │        │                            │
+          Payment  Order   Inventory                       │
+          Verify   Mgmt      Mgmt                          │
+             │      │        │                            │
+             └──────┼────────┘                            │
+                    ▼                                     │
+                 DELIVERY                                 │
+                    │                                     │
+                    ▼                                     │
+                DELIVERED                                 │
+                    │                                     │
+                    ▼                                     │
+                 REVIEW                                   │
+                    │                                     │
+                    └─────────────────────────────────────┘
