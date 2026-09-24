@@ -5,8 +5,10 @@ const InvTransaction = require("../../models/InventoryTransaction");
 const { adminProtect } = require("../../middleware/auth");
 const { requirePermission } = require("../../utils/permissions");
 const { uploadProductImages } = require("../../middleware/upload");
+const { uploadBuffer } = require("../../utils/cloudinaryUpload");
 const { ApiError, asyncHandler } = require("../../utils/apiError");
 const { serializeProduct } = require("../../utils/serialize");
+const cloudinary = require("../../config/cloudinary");
 
 const router = express.Router();
 router.use(adminProtect);
@@ -124,7 +126,16 @@ router.post(
       throw new ApiError(400, "No image files uploaded");
     }
 
-    const urls = req.files.map((file) => `/uploads/products/${file.filename}`);
+    const urls = [];
+
+    for (const file of req.files) {
+      const result = await uploadBuffer(
+        file.buffer,
+        "yoyo-ecommerce/products"
+      );
+
+      urls.push(result.secure_url);
+    }
 
     res.json({
       success: true,
