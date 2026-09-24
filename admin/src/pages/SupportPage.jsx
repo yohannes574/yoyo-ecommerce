@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../api/axios";
+import { getImageUrl } from "../utils/imageUrl";
 
 const TABS = [
   { key: "open", label: "Open" },
@@ -215,7 +216,12 @@ export default function SupportPage() {
                       </div>
                       <div className="timeline-note" style={{ whiteSpace: "pre-wrap" }}>{m.message}</div>
                       {m.attachment && (
-                        <a href={`http://localhost:5001${m.attachment}`} target="_blank" rel="noreferrer" className="btn-link">
+                        <a
+                          href={getImageUrl(m.attachment)}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="btn-link"
+                        >
                           📎 View attachment
                         </a>
                       )}

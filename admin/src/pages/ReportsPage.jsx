@@ -72,7 +72,12 @@ export default function ReportsPage() {
   }, [range, tab]);
 
   function exportCsv(kind) {
-    window.open(`http://localhost:5001/api/admin/reports/${kind}?range=${range}&format=csv`, "_blank");
+    const apiBaseUrl = import.meta.env.VITE_API_URL;
+
+    window.open(
+      `${apiBaseUrl}/admin/reports/${kind}?range=${range}&format=csv`,
+      "_blank"
+    );
   }
 
   return (

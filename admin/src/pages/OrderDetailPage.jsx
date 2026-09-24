@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import api from "../api/axios";
+import { getImageUrl } from "../utils/imageUrl";
 
 const STATUS_PIPELINE = [
   "pending", "confirmed", "processing",
@@ -177,7 +178,11 @@ export default function OrderDetailPage() {
                     <td>
                       <div className="product-cell">
                         {item.image && (
-                          <img src={`http://localhost:5001${item.image}`} alt={item.name} className="product-thumb" />
+                          <img
+                            src={getImageUrl(item.image)}
+                            alt={item.name}
+                            className="product-thumb"
+                          />
                         )}
                         <span>{item.name}</span>
                       </div>
@@ -214,8 +219,16 @@ export default function OrderDetailPage() {
               {o.payment?.receiptUrl && (
                 <div className="info-item full">
                   <span className="info-label">Receipt</span>
-                  <a href={`http://localhost:5001${o.payment.receiptUrl}`} target="_blank" rel="noopener noreferrer">
-                    <img src={`http://localhost:5001${o.payment.receiptUrl}`} alt="Receipt" className="receipt-preview" />
+                  <a
+                    href={getImageUrl(o.payment.receiptUrl)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img
+                      src={getImageUrl(o.payment.receiptUrl)}
+                      alt="Receipt"
+                      className="receipt-preview"
+                    />
                   </a>
                 </div>
               )}
@@ -225,7 +238,7 @@ export default function OrderDetailPage() {
             {isPendingReceipt && (
               <div className="receipt-actions">
                 <div className="receipt-alert">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></svg>
                   Bank transfer receipt awaiting your verification
                 </div>
                 {!showReject ? (

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../api/axios";
+import { getImageUrl } from "../utils/imageUrl";
 
 const TABS = [
   { key: "requested", label: "Requested" },
@@ -236,8 +237,23 @@ export default function ReturnsPage() {
                   <span className="info-label">Evidence</span>
                   <div style={{ display: "flex", gap: 8, marginTop: 6, flexWrap: "wrap" }}>
                     {detail.evidence.map((url, i) => (
-                      <a key={i} href={`http://localhost:5001${url}`} target="_blank" rel="noreferrer">
-                        <img src={`http://localhost:5001${url}`} alt={`evidence ${i + 1}`} style={{ width: 72, height: 72, objectFit: "cover", borderRadius: 8, border: "1px solid #e2e8f0" }} />
+                      <a
+                        key={i}
+                        href={getImageUrl(url)}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <img
+                          src={getImageUrl(url)}
+                          alt={`evidence ${i + 1}`}
+                          style={{
+                            width: 72,
+                            height: 72,
+                            objectFit: "cover",
+                            borderRadius: 8,
+                            border: "1px solid #e2e8f0"
+                          }}
+                        />
                       </a>
                     ))}
                   </div>

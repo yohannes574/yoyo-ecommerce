@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../api/axios";
+import { getImageUrl } from "../utils/imageUrl";
 
 const SECTION_LABELS = {
   showCategories: "Categories section",
@@ -113,7 +114,16 @@ export default function ContentPage() {
                 <tr key={b.id}>
                   <td>
                     {b.image ? (
-                      <img src={`http://localhost:5001${b.image}`} alt="" style={{ width: 72, height: 40, objectFit: "cover", borderRadius: 6 }} />
+                      <img
+                        src={getImageUrl(b.image)}
+                        alt=""
+                        style={{
+                          width: 72,
+                          height: 40,
+                          objectFit: "cover",
+                          borderRadius: 6
+                        }}
+                      />
                     ) : (
                       <div style={{ width: 72, height: 40, background: "#f1f5f9", borderRadius: 6, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, color: "#94a3b8" }}>no img</div>
                     )}

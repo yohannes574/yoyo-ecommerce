@@ -1,10 +1,18 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
-  AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-  BarChart, Bar, Legend,
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  BarChart,
+  Bar,
 } from "recharts";
 import api from "../api/axios";
+import { getImageUrl } from "../utils/imageUrl";
 
 const STATUS_COLOR = {
   pending: "#f59e0b",
@@ -32,8 +40,14 @@ function MetricCard({ icon, label, value, sub, accent }) {
 
 function StatusBadge({ status }) {
   const label = status?.replace(/_/g, " ") || "unknown";
+
   return (
-    <span className="status-badge" style={{ "--badge-color": STATUS_COLOR[status] || "#6b7280" }}>
+    <span
+      className="status-badge"
+      style={{
+        "--badge-color": STATUS_COLOR[status] || "#6b7280",
+      }}
+    >
       {label}
     </span>
   );
@@ -44,37 +58,49 @@ function formatETB(n) {
 }
 
 function formatDate(iso) {
-  return new Date(iso).toLocaleDateString("en-ET", { month: "short", day: "numeric" });
+  return new Date(iso).toLocaleDateString("en-ET", {
+    month: "short",
+    day: "numeric",
+  });
 }
 
 export default function Dashboard() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
   const navigate = useNavigate();
 
   useEffect(() => {
-    api.get("/admin/dashboard/metrics")
+    api
+      .get("/admin/dashboard/metrics")
       .then((r) => setData(r.data))
       .catch(() => setError("Failed to load dashboard data."))
       .finally(() => setLoading(false));
   }, []);
 
-  if (loading) return (
-    <div className="page-loading">
-      <span className="spinner" />
-      <p>Loading dashboard…</p>
-    </div>
-  );
+  if (loading)
+    return (
+      <div className="page-loading">
+        <span className="spinner" />
+        <p>Loading dashboard…</p>
+      </div>
+    );
 
   if (error) return <div className="page-error">{error}</div>;
 
-  const { metrics, salesTimeline = [], lowStockProducts = [], recentOrders = [] } = data;
+  const {
+    metrics,
+    salesTimeline = [],
+    lowStockProducts = [],
+    recentOrders = [],
+  } = data;
 
-  // Format chart dates as short day labels
   const chartData = salesTimeline.map((d) => ({
     ...d,
-    day: new Date(d.date + "T00:00:00").toLocaleDateString("en-ET", { weekday: "short" }),
+    day: new Date(d.date + "T00:00:00").toLocaleDateString("en-ET", {
+      weekday: "short",
+    }),
   }));
 
   return (
@@ -82,14 +108,19 @@ export default function Dashboard() {
       <div className="page-header">
         <div>
           <h1 className="page-title">Dashboard</h1>
-          <p className="page-desc">Welcome back — here's what's happening today.</p>
+          <p className="page-desc">
+            Welcome back — here's what's happening today.
+          </p>
         </div>
-        <button className="btn btn-primary" onClick={() => window.location.reload()}>
+
+        <button
+          className="btn btn-primary"
+          onClick={() => window.location.reload()}
+        >
           ↻ Refresh
         </button>
       </div>
 
-      {/* Metric Cards */}
       <div className="metrics-grid">
         <MetricCard
           icon="💰"
@@ -97,6 +128,7 @@ export default function Dashboard() {
           value={formatETB(metrics.totalRevenue)}
           accent="#6366f1"
         />
+
         <MetricCard
           icon="📦"
           label="Total Orders"
@@ -104,12 +136,14 @@ export default function Dashboard() {
           sub={`${metrics.statusCounts.pending} pending`}
           accent="#10b981"
         />
+
         <MetricCard
           icon="👥"
           label="Customers"
           value={metrics.totalCustomers.toLocaleString()}
           accent="#f59e0b"
         />
+
         <MetricCard
           icon="⚠️"
           label="Low Stock"
@@ -117,6 +151,7 @@ export default function Dashboard() {
           sub={`${metrics.outOfStockCount} out of stock`}
           accent="#ef4444"
         />
+
         <MetricCard
           icon="🏦"
           label="Pending Receipts"
@@ -126,55 +161,100 @@ export default function Dashboard() {
         />
       </div>
 
-      {/* Charts Row */}
       <div className="charts-row">
         <div className="chart-card">
           <h2 className="chart-title">Revenue — Last 7 Days</h2>
+
           <ResponsiveContainer width="100%" height={220}>
-            <AreaChart data={chartData} margin={{ top: 5, right: 10, left: 0, bottom: 0 }}>
+            <AreaChart data={chartData}>
               <defs>
-                <linearGradient id="revGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#6366f1" stopOpacity={0.3} />
-                  <stop offset="95%" stopColor="#6366f1" stopOpacity={0} />
+                <linearGradient
+                  id="revGrad"
+                  x1="0"
+                  y1="0"
+                  x2="0"
+                  y2="1"
+                >
+                  <stop
+                    offset="5%"
+                    stopColor="#6366f1"
+                    stopOpacity={0.3}
+                  />
+                  <stop
+                    offset="95%"
+                    stopColor="#6366f1"
+                    stopOpacity={0}
+                  />
                 </linearGradient>
               </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-              <XAxis dataKey="day" tick={{ fontSize: 12, fill: "#6b7280" }} />
-              <YAxis tick={{ fontSize: 12, fill: "#6b7280" }} />
-              <Tooltip
-                formatter={(v) => [`${v.toLocaleString()} ETB`, "Revenue"]}
-                contentStyle={{ borderRadius: 8, border: "1px solid #e5e7eb" }}
+
+              <CartesianGrid
+                strokeDasharray="3 3"
+                stroke="#e5e7eb"
               />
-              <Area type="monotone" dataKey="revenue" stroke="#6366f1" strokeWidth={2} fill="url(#revGrad)" />
+
+              <XAxis dataKey="day" />
+
+              <YAxis />
+
+              <Tooltip
+                formatter={(v) => [
+                  `${v.toLocaleString()} ETB`,
+                  "Revenue",
+                ]}
+              />
+
+              <Area
+                type="monotone"
+                dataKey="revenue"
+                stroke="#6366f1"
+                fill="url(#revGrad)"
+              />
             </AreaChart>
           </ResponsiveContainer>
         </div>
 
         <div className="chart-card">
           <h2 className="chart-title">Orders — Last 7 Days</h2>
+
           <ResponsiveContainer width="100%" height={220}>
-            <BarChart data={chartData} margin={{ top: 5, right: 10, left: 0, bottom: 0 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-              <XAxis dataKey="day" tick={{ fontSize: 12, fill: "#6b7280" }} />
-              <YAxis tick={{ fontSize: 12, fill: "#6b7280" }} />
+            <BarChart data={chartData}>
+              <CartesianGrid
+                strokeDasharray="3 3"
+                stroke="#e5e7eb"
+              />
+
+              <XAxis dataKey="day" />
+
+              <YAxis />
+
               <Tooltip
                 formatter={(v) => [v, "Orders"]}
-                contentStyle={{ borderRadius: 8, border: "1px solid #e5e7eb" }}
               />
-              <Bar dataKey="orders" fill="#10b981" radius={[4, 4, 0, 0]} />
+
+              <Bar
+                dataKey="orders"
+                fill="#10b981"
+                radius={[4, 4, 0, 0]}
+              />
             </BarChart>
           </ResponsiveContainer>
         </div>
       </div>
 
-      {/* Bottom Row */}
       <div className="dashboard-bottom">
-        {/* Recent Orders */}
         <div className="table-card">
           <div className="card-header">
             <h2 className="card-title">Recent Orders</h2>
-            <button className="btn-link" onClick={() => navigate("/orders")}>View all →</button>
+
+            <button
+              className="btn-link"
+              onClick={() => navigate("/orders")}
+            >
+              View all →
+            </button>
           </div>
+
           <table className="data-table">
             <thead>
               <tr>
@@ -186,58 +266,109 @@ export default function Dashboard() {
                 <th>Date</th>
               </tr>
             </thead>
+
             <tbody>
               {recentOrders.map((o) => (
-                <tr key={o.id} onClick={() => navigate(`/orders/${o.id}`)} className="clickable-row">
-                  <td><strong>{o.orderNumber}</strong></td>
+                <tr
+                  key={o.id}
+                  onClick={() => navigate(`/orders/${o.id}`)}
+                  className="clickable-row"
+                >
+                  <td>
+                    <strong>{o.orderNumber}</strong>
+                  </td>
+
                   <td>{o.customerName}</td>
+
                   <td>{formatETB(o.total)}</td>
-                  <td className="capitalize">{o.paymentMethod?.replace(/_/g, " ")}</td>
-                  <td><StatusBadge status={o.orderStatus} /></td>
+
+                  <td>
+                    {o.paymentMethod?.replace(/_/g, " ")}
+                  </td>
+
+                  <td>
+                    <StatusBadge status={o.orderStatus} />
+                  </td>
+
                   <td>{formatDate(o.createdAt)}</td>
                 </tr>
               ))}
+
               {recentOrders.length === 0 && (
-                <tr><td colSpan={6} className="empty-row">No orders yet</td></tr>
+                <tr>
+                  <td colSpan={6} className="empty-row">
+                    No orders yet
+                  </td>
+                </tr>
               )}
             </tbody>
           </table>
         </div>
 
-        {/* Low Stock */}
         <div className="table-card low-stock-card">
           <div className="card-header">
-            <h2 className="card-title">⚠️ Low Stock Alert</h2>
-            <button className="btn-link" onClick={() => navigate("/inventory")}>Manage →</button>
+            <h2 className="card-title">
+              ⚠️ Low Stock Alert
+            </h2>
+
+            <button
+              className="btn-link"
+              onClick={() => navigate("/inventory")}
+            >
+              Manage →
+            </button>
           </div>
+
           <div className="low-stock-list">
             {lowStockProducts.map((p) => (
               <div
                 key={p.id}
-                className={`low-stock-item ${p.isOutOfStock ? "out-of-stock" : ""}`}
+                className={`low-stock-item ${
+                  p.isOutOfStock ? "out-of-stock" : ""
+                }`}
                 onClick={() => navigate("/inventory")}
               >
                 <div className="stock-product-info">
                   {p.image ? (
-                    <img src={`http://localhost:5001${p.image}`} alt={p.name} className="stock-thumb" />
+                    <img
+                      src={getImageUrl(p.image)}
+                      alt={p.name}
+                      className="stock-thumb"
+                    />
                   ) : (
-                    <div className="stock-thumb-placeholder">📦</div>
+                    <div className="stock-thumb-placeholder">
+                      📦
+                    </div>
                   )}
+
                   <div>
                     <p className="stock-name">{p.name}</p>
-                    <p className="stock-sku">SKU: {p.sku}</p>
+                    <p className="stock-sku">
+                      SKU: {p.sku}
+                    </p>
                   </div>
                 </div>
+
                 <div className="stock-numbers">
-                  <span className={`stock-count ${p.isOutOfStock ? "zero" : "low"}`}>
+                  <span
+                    className={`stock-count ${
+                      p.isOutOfStock ? "zero" : "low"
+                    }`}
+                  >
                     {p.stock} left
                   </span>
-                  <span className="stock-threshold">/ {p.lowStockThreshold}</span>
+
+                  <span className="stock-threshold">
+                    / {p.lowStockThreshold}
+                  </span>
                 </div>
               </div>
             ))}
+
             {lowStockProducts.length === 0 && (
-              <p className="empty-state">✅ All products are well stocked</p>
+              <p className="empty-state">
+                ✅ All products are well stocked
+              </p>
             )}
           </div>
         </div>
