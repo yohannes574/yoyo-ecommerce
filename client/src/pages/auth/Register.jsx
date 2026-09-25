@@ -26,15 +26,13 @@ export default function Register() {
     }
     setBusy(true)
     try {
-      const res = await register({
+      await register({
         name: form.name,
         email: form.email,
         phone: form.phone,
         password: form.password,
       })
-      navigate(`/verify?email=${encodeURIComponent(form.email)}`, {
-        state: { notice: res?.message },
-      })
+      navigate('/', { replace: true })
     } catch (err) {
       setError(err.message)
     } finally {

@@ -6,11 +6,10 @@ const nodemailer = require("nodemailer");
  * - When EMAIL_HOST is configured: a single pooled SMTP transporter is created
  *   and the connection is verified once at boot (status is logged).
  * - When EMAIL_HOST is empty (local dev): a mock transport prints the message
- *   to the server console with a loud warning, so verification codes remain
+ *   to the server console with a loud warning, so password reset codes remain
  *   testable without a real SMTP account — and it is obvious no real email went out.
  *
- * Use `sendEmail` when a failure should surface to the caller, and
- * `sendEmailSafe` for fire-and-forget sends (never throws).
+ * Use `sendEmail` when a failure should surface to the caller.
  */
 
 const isConfigured = Boolean(process.env.EMAIL_HOST);
@@ -45,7 +44,7 @@ if (transporter) {
 } else {
   console.warn(
     "⚠️ EMAIL NOT CONFIGURED (EMAIL_HOST is empty in server/.env).\n" +
-      "   No real emails will be sent — verification/reset codes are printed to this console only."
+      "   No real emails will be sent — password reset codes are printed to this console only."
   );
 }
 
@@ -70,18 +69,4 @@ const sendEmail = async ({ to, subject, text, html }) => {
   return transporter.sendMail(message);
 };
 
-/**
- * Fire-and-forget wrapper: never throws. Returns
- * { sent: boolean, mock?: boolean, error?: string }.
- */
-const sendEmailSafe = async (opts) => {
-  try {
-    const info = await sendEmail(opts);
-    return { sent: !info.mock, mock: Boolean(info.mock) };
-  } catch (err) {
-    console.error(`❌ Email send failed to ${opts.to}: ${err.message}`);
-    return { sent: false, error: err.message };
-  }
-};
-
-module.exports = { sendEmail, sendEmailSafe, isEmailConfigured: isConfigured };
+module.exports = { sendEmail, isEmailConfigured: isConfigured };

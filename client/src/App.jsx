@@ -25,7 +25,6 @@ import SupportCenter from './pages/account/SupportCenter'
 
 import Login from './pages/auth/Login'
 import Register from './pages/auth/Register'
-import Verify from './pages/auth/Verify'
 import ForgotPassword from './pages/auth/ForgotPassword'
 import StaticPage from './pages/StaticPage'
 import MockPaymentPage from './pages/MockPaymentPage'
@@ -97,7 +96,6 @@ export default function App() {
 
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/verify" element={<Verify />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
 
         <Route path="/about" element={<StaticPage page="about" />} />

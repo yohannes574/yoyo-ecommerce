@@ -22,10 +22,6 @@ export default function Login() {
       await login(identifier, password)
       navigate(redirect, { replace: true })
     } catch (err) {
-      if (err.code === 'VERIFY_REQUIRED') {
-        navigate(`/verify?email=${encodeURIComponent(identifier)}&redirect=${encodeURIComponent(redirect)}`)
-        return
-      }
       setError(err.message)
     } finally {
       setBusy(false)

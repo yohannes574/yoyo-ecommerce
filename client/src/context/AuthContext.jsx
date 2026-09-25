@@ -29,18 +29,8 @@ export function AuthProvider({ children }) {
 
   const register = async (payload) => {
     const d = await api.post('/auth/register', payload)
+    if (d.token) applySession(d.token, d.customer)
     return d
-  }
-
-  const verify = async (email, code) => {
-    const d = await api.post('/auth/verify', { email, code })
-    applySession(d.token, d.customer)
-    return d.customer
-  }
-
-  const resendCode = async (email) => {
-    const d = await api.post('/auth/resend-code', { email })
-    return d.message
   }
 
   const login = async (identifier, password) => {
@@ -68,8 +58,6 @@ export function AuthProvider({ children }) {
     user,
     loading,
     register,
-    verify,
-    resendCode,
     login,
     logout,
     forgotPassword,

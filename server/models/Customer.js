@@ -12,9 +12,6 @@ const customerSchema = new mongoose.Schema(
     },
     phone: { type: String, trim: true },
     passwordHash: { type: String, required: true },
-    verified: { type: Boolean, default: false },
-    verificationCodeHash: { type: String },
-    verificationCodeExpires: { type: Date },
     resetCodeHash: { type: String },
     resetCodeExpires: { type: Date },
     status: { type: String, enum: ["active", "disabled"], default: "active" },
@@ -28,7 +25,6 @@ customerSchema.methods.toSafeJSON = function () {
     name: this.name,
     email: this.email,
     phone: this.phone,
-    verified: this.verified,
     status: this.status,
     createdAt: this.createdAt,
   };
