@@ -5,6 +5,7 @@ const Return = require("../models/Return");
 const { protect } = require("../middleware/auth");
 const { uploadReceipt } = require("../middleware/upload");
 const { ApiError, asyncHandler } = require("../utils/apiError");
+const { uploadBuffer } = require("../utils/cloudinaryUpload");
 
 const router = express.Router();
 router.use(protect);
@@ -14,10 +15,18 @@ router.post(
   "/upload-evidence",
   uploadReceipt.single("evidence"),
   asyncHandler(async (req, res) => {
-    if (!req.file) throw new ApiError(400, "No image uploaded");
+    if (!req.file) {
+      throw new ApiError(400, "No image uploaded");
+    }
+
+    const result = await uploadBuffer(
+      req.file.buffer,
+      "yoyo-ecommerce/returns"
+    );
+
     res.json({
       success: true,
-      url: `/uploads/receipts/${req.file.filename}`,
+      url: result.secure_url,
     });
   })
 );

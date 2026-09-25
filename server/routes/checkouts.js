@@ -12,7 +12,7 @@ const { ApiError, asyncHandler } = require("../utils/apiError");
 const { DELIVERY_FEE, validatePromo } = require("../utils/orders");
 const { deliveryFeeFor } = require("../utils/delivery");
 const { createCustomerNotification, createAdminNotification } = require("../utils/notifications");
-
+const { uploadBuffer } = require("../utils/cloudinaryUpload");
 const router = express.Router();
 router.use(protect);
 
@@ -21,10 +21,18 @@ router.post(
   "/upload-receipt",
   uploadReceipt.single("receipt"),
   asyncHandler(async (req, res) => {
-    if (!req.file) throw new ApiError(400, "No receipt file uploaded");
+    if (!req.file) {
+      throw new ApiError(400, "No receipt file uploaded");
+    }
+
+    const result = await uploadBuffer(
+      req.file.buffer,
+      "yoyo-ecommerce/receipts"
+    );
+
     res.json({
       success: true,
-      url: `/uploads/receipts/${req.file.filename}`,
+      url: result.secure_url,
     });
   })
 );

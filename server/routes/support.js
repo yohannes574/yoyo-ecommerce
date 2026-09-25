@@ -4,7 +4,7 @@ const { protect } = require("../middleware/auth");
 const { uploadReceipt } = require("../middleware/upload");
 const { ApiError, asyncHandler } = require("../utils/apiError");
 const { createAdminNotification } = require("../utils/notifications");
-
+const { uploadBuffer } = require("../utils/cloudinaryUpload");
 const router = express.Router();
 router.use(protect);
 
@@ -13,8 +13,19 @@ router.post(
   "/upload-attachment",
   uploadReceipt.single("attachment"),
   asyncHandler(async (req, res) => {
-    if (!req.file) throw new ApiError(400, "No file uploaded");
-    res.json({ success: true, url: `/uploads/receipts/${req.file.filename}` });
+    if (!req.file) {
+      throw new ApiError(400, "No file uploaded");
+    }
+
+    const result = await uploadBuffer(
+      req.file.buffer,
+      "yoyo-ecommerce/support"
+    );
+
+    res.json({
+      success: true,
+      url: result.secure_url,
+    });
   })
 );
 
